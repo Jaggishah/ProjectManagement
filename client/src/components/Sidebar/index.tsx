@@ -111,6 +111,32 @@ import React, { useState } from 'react'
                 <ChevronDown className="h-5 w-5" />
               )}
             </button>
+       
+            {showPriority && (
+              <>
+                <SidebarLink
+                  icon={AlertCircle}
+                  label="Urgent"
+                  href="/priority/urgent"
+                />
+                <SidebarLink
+                  icon={ShieldAlert}
+                  label="High"
+                  href="/priority/high"
+                />
+                <SidebarLink
+                  icon={AlertTriangle}
+                  label="Medium"
+                  href="/priority/medium"
+                />
+                <SidebarLink icon={AlertOctagon} label="Low" href="/priority/low" />
+                <SidebarLink
+                  icon={Layers3}
+                  label="Backlog"
+                  href="/priority/backlog"
+                />
+              </>
+            )}
          </div>
 
 

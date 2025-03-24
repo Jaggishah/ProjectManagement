@@ -10,41 +10,18 @@ const DashboardLayout = ({ children } : { children : React.ReactNode}) => {
         (state) => state.global.isSidebarCollapsed,
       );
       const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-      useEffect(() => {
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        document.documentElement.classList.toggle(
-          'dark',
-          localStorage.theme === 'dark' ||
-            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        );
-      }, []);
+
 
         useEffect(() => {
             if (isDarkMode) {
-            setDarkMode();
-            } else {
-            setLightMode();
+                toggleTheme();
             }
         }, [isDarkMode]);
 
-      const setLightMode = () => {
-        localStorage.theme = 'light';
-        document.documentElement.classList.remove('dark');
-      };
-    
-      const setDarkMode = () => {
-        localStorage.theme = 'dark';
-        document.documentElement.classList.add('dark');
-      };
-    
-      const setSystemMode = () => {
-        localStorage.removeItem('theme');
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      };
+        const toggleTheme = () => {
+            document.documentElement.classList.toggle('dark')
+          }
+      
 
   return (
     <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>

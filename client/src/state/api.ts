@@ -93,16 +93,35 @@ export const api = createApi({
             }),
             invalidatesTags: ["Projects"],
           }),
-          getTasks: build.query<Task[], { projectId: number }>({
-            query: ({ projectId }) => `tasks?projectId=${projectId}`,
-            providesTags: (result) =>
-              result
-                ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
-                : [{ type: "Tasks" as const }],
-          }),
+        getTasks: build.query<Task[], { projectId: number }>({
+        query: ({ projectId }) => `tasks?projectId=${projectId}`,
+        providesTags: (result) =>
+            result
+            ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
+            : [{ type: "Tasks" as const }],
+        }),
+        createTask: build.mutation<Task, Partial<Task>>({
+        query: (task) => ({
+            url: "tasks",
+            method: "POST",
+            body: task,
+        }),
+        invalidatesTags: ["Tasks"],
+        }),
+        updateTaskStatus: build.mutation<Task, { taskId: number; status: string }>({
+            query: ({ taskId, status }) => ({
+              url: `tasks/${taskId}/status`,
+              method: "PATCH",
+              body: { status },
+            }),
+            invalidatesTags: (result, error, { taskId }) => [
+              { type: "Tasks", id: taskId },
+            ],
+        }),
+
       
 
     })
 })
 
-const { useGetProjectsQuery, useCreateProjectMutation } = api
+ export const  { useGetProjectsQuery, useCreateProjectMutation, useGetTasksQuery, useCreateTaskMutation, useUpdateTaskStatusMutation } = api

@@ -9,6 +9,7 @@ import {
     Share2,
     Table,
   } from "lucide-react";
+  import ModalNewProject from "./ModalNewProject";
 
 type Props = {
     activeTab: string;
@@ -18,6 +19,10 @@ const ProjectHeader = ({activeTab,setActiveTab}: Props) => {
     const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
   return (
     <div className="px-4 xl:px-6">
+          <ModalNewProject
+            isOpen={isModalNewProjectOpen}
+            onClose={() => setIsModalNewProjectOpen(false)}
+        />
         <div className="pb-6 pt-6 lg:pb-4 lg:pt-8">
             <Header
             name="Product Design Development"

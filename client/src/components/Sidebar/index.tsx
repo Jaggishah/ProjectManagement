@@ -83,7 +83,7 @@ import React, { useState } from 'react'
             
             <nav className="z-10 w-full">
               <SidebarLink icon={Home} label="Home" href="/" />
-              <SidebarLink icon={Briefcase} label="Timeline" href="/timeline" />
+              {/* <SidebarLink icon={Briefcase} label="Timeline" href="/timeline" /> */}
               <SidebarLink icon={Search} label="Search" href="/search" />
               <SidebarLink icon={Settings} label="Settings" href="/settings" />
               <SidebarLink icon={User} label="Users" href="/users" />

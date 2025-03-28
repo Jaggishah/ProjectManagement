@@ -6,7 +6,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import ProjectRoutes from './routes/projectRoutes';
 import TaskRoutes from './routes/taskRoutes';
-
+import searchRoutes from "./routes/searchRoutes";
+import userRoutes from "./routes/userRoutes";
+import teamRoutes from "./routes/teamRoutes";
 
 
 dotenv.config();
@@ -26,6 +28,9 @@ app.get('/', (req, res) => {
 
 app.use('/projects', ProjectRoutes);
 app.use('/tasks', TaskRoutes);
+app.use("/search", searchRoutes);
+app.use("/users", userRoutes);
+app.use("/teams", teamRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
